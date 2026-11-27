@@ -21,12 +21,12 @@ function makeScene(){
   renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
   renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-  renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.28;
-  scene=new THREE.Scene();scene.background=new THREE.Color(0x242a26);scene.fog=new THREE.FogExp2(0x242a26,.012);
+  renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.65;
+  scene=new THREE.Scene();scene.background=new THREE.Color(0x9ca99f);scene.fog=new THREE.FogExp2(0x9ca99f,.006);
   camera=new THREE.PerspectiveCamera(68,canvas.clientWidth/canvas.clientHeight,.05,90);camera.rotation.order='YXZ';scene.add(camera);
-  scene.add(new THREE.HemisphereLight(0xdce9d5,0x596052,1.7));
-  const ambient=new THREE.AmbientLight(0xffffff,.38);scene.add(ambient);
-  const key=new THREE.DirectionalLight(0xffedcf,1.15);key.position.set(-5,9,6);key.castShadow=true;key.shadow.mapSize.set(1024,1024);scene.add(key);
+  scene.add(new THREE.HemisphereLight(0xeef7df,0x879287,3.15));
+  const ambient=new THREE.AmbientLight(0xf4fff5,1.18);scene.add(ambient);
+  const key=new THREE.DirectionalLight(0xfff1d2,2.25);key.position.set(-5,12,6);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-15;key.shadow.camera.right=15;key.shadow.camera.top=15;key.shadow.camera.bottom=-15;scene.add(key);
   buildWeapon();clock=new THREE.Clock();
 }
 
@@ -49,7 +49,7 @@ function buildFloor(){
   box(g,[.2,4,24],[-12,2,0],C.wall);box(g,[.2,4,24],[12,2,0],C.wall);
   // Central corridor with fluorescent emergency lights.
   box(g,[24,.05,3],[0,.02,0],0x252b27);
-  for(let z=-10;z<=10;z+=4){const lamp=box(g,[2.2,.06,.18],[0,3.86,z],0xe8f2d9);lamp.material.emissive=new THREE.Color(0xd7e9ae);lamp.material.emissiveIntensity=.8;const glow=new THREE.PointLight(0xffedc8,4.2,9,1.8);glow.position.set(0,3.25,z);g.add(glow);}
+  for(let z=-10;z<=10;z+=4){const lamp=box(g,[2.2,.06,.18],[0,3.86,z],0xfaffdf);lamp.material.emissive=new THREE.Color(0xf0ffc1);lamp.material.emissiveIntensity=1.35;const glow=new THREE.PointLight(0xfff2cf,9.5,12,1.35);glow.position.set(0,3.25,z);g.add(glow);}
   // Seven rooms: three north, four south, each dressed as a lived-in space.
   const rooms=[[-7,0,-7,5,4,8],[0,0,-7,5,4,8],[7,0,-7,5,4,8],[-8.5,0,7,4,4,7],[-3.5,0,7,4,4,7],[3,0,7,4,4,7],[8.5,0,7,3.5,4,7]];
   rooms.forEach((r,i)=>{const[x,y,z,w,h,d]=r;box(g,[w,.12,d],[x,.01,z],i%2?0x30332e:0x35352e);if(i<3){const doorW=1.65,front=z+d/2;box(g,[(w-doorW)/2,3.8,.18],[x-(w+doorW)/4,2,front],0x65675c);box(g,[(w-doorW)/2,3.8,.18],[x+(w+doorW)/4,2,front],0x65675c);box(g,[.18,3.8,d],[x-w/2,2,z],C.wall);box(g,[.18,3.8,d],[x+w/2,2,z],C.wall);}else{const doorW=1.65,front=z-d/2;box(g,[(w-doorW)/2,3.8,.18],[x-(w+doorW)/4,2,front],0x65675c);box(g,[(w-doorW)/2,3.8,.18],[x+(w+doorW)/4,2,front],0x65675c);box(g,[.18,3.8,d],[x-w/2,2,z],C.wall);box(g,[.18,3.8,d],[x+w/2,2,z],C.wall);}addRoomProps(g,x,z,i);});
@@ -77,7 +77,7 @@ function addRoomProps(parent,x,z,index){
   box(parent,[.55,1.55,.48],[cabX,.78,cabZ],0x59645f);box(parent,[.48,.05,.035],[cabX,.96,cabZ+.25],0x818b80);box(parent,[.48,.05,.035],[cabX,.48,cabZ+.25],0x818b80);
   const sign=box(parent,[.55,.26,.055],[x,2.65,index<3?z+3.86:z-3.36],index%2?0x426e57:0x8c583f);sign.material.emissive=new THREE.Color(index%2?0x1d5831:0x622816);sign.material.emissiveIntensity=.45;
   const fixture=box(parent,[1.1,.07,.45],[x,3.8,z],0xf4eccd);fixture.material.emissive=new THREE.Color(0xffe6a0);fixture.material.emissiveIntensity=.75;
-  const light=new THREE.PointLight(index%2?0xd9edff:0xffd49b,2.6,7,1.7);light.position.set(x,3.15,z);parent.add(light);
+  const light=new THREE.PointLight(index%2?0xe5f4ff:0xfff1b8,5.8,11,1.45);light.position.set(x,3.15,z);parent.add(light);
   if(index%3===0){box(parent,[.22,.55,.22],[x-1.6,.3,z-.5],0x485a42);for(let n=0;n<3;n++){const leaf=new THREE.Mesh(new THREE.ConeGeometry(.18,.48,5),mat(0x536e48));leaf.position.set(x-1.6,.78+n*.1,z-.5);parent.add(leaf);}}
   if(index%2===0){const spill=box(parent,[.55,.06,.75],[x+(index?-.9:.9),.055,z+(index<3?-.9:.8)],0x5c493b);spill.rotation.y=.3;}
 }
@@ -102,7 +102,7 @@ function isBlocked(pos){return Math.abs(pos.x)>11.65||Math.abs(pos.z)>11.65;}
 function movePlayer(dt){
   const forward=(keys.ArrowUp||keys.KeyW?1:0)-(keys.ArrowDown||keys.KeyS?1:0),side=(keys.ArrowRight||keys.KeyD?1:0)-(keys.ArrowLeft||keys.KeyA?1:0);
   const input=new THREE.Vector2(side,forward);if(input.lengthSq()>1)input.normalize();const angle=yaw,sprint=keys.ShiftLeft||keys.ShiftRight?1.32:1;
-  const desiredX=(Math.sin(angle)*input.y+Math.cos(angle)*input.x)*5.1*sprint,desiredZ=(-Math.cos(angle)*input.y+Math.sin(angle)*input.x)*5.1*sprint;
+  const desiredX=(-Math.sin(angle)*input.y+Math.cos(angle)*input.x)*5.1*sprint,desiredZ=(-Math.cos(angle)*input.y-Math.sin(angle)*input.x)*5.1*sprint;
   const blend=1-Math.exp(-(input.lengthSq()?12:9)*dt);moveVelocity.x=THREE.MathUtils.lerp(moveVelocity.x,desiredX,blend);moveVelocity.z=THREE.MathUtils.lerp(moveVelocity.z,desiredZ,blend);
   const nx=player.x+moveVelocity.x*dt,nz=player.z+moveVelocity.z*dt;if(!isBlocked(new THREE.Vector3(nx,0,nz))){player.x=nx;player.z=nz;}else{moveVelocity.set(0,0,0);}
   const moving=input.lengthSq()>.02;if(moving)walkPhase+=dt*(sprint?13:9);bobPhase=THREE.MathUtils.lerp(bobPhase,moving?1:0,1-Math.exp(-7*dt));
