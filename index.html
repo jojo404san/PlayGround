@@ -31,7 +31,7 @@
     <section id="game-screen" class="game-screen hidden">
       <div class="game-heading"><div><p class="eyebrow">MERIDIAN TOWER <span>/</span> ACTIVE SWEEP</p><h2 id="floor-title">LOBBY <span>— FLOOR 01</span></h2></div><div class="floor-progress"><div class="progress-label"><span>ROOF ACCESS</span><b id="floor-count">01 <i>/ 30</i></b></div><div class="progress-track"><i id="floor-progress-fill"></i></div></div></div>
       <div class="game-layout">
-        <div class="scene-wrap"><canvas id="game" width="1000" height="620" aria-label="Top-down view of the current building floor"></canvas><div id="toast" class="toast"></div><div id="interact-hint" class="interact-hint hidden"><span>E</span> <b>INTERACT</b></div><div class="scene-bottom"><span><i class="live-dot"></i> LIVE FLOOR FEED</span><span id="floor-weather">POWER UNSTABLE · LIGHTS FLICKERING</span><span id="ammo-scene">9 / 36</span></div></div>
+        <div class="scene-wrap"><canvas id="game" width="1000" height="620" aria-label="First-person view of the current building floor"></canvas><div id="crosshair" class="crosshair"><i></i><i></i></div><div id="toast" class="toast"></div><div id="interact-hint" class="interact-hint hidden"><span>E</span> <b>INTERACT</b></div><div class="scene-bottom"><span><i class="live-dot"></i> LIVE FLOOR FEED</span><span id="floor-weather">POWER UNSTABLE · LIGHTS FLICKERING</span><span id="ammo-scene">9 / 36</span></div></div>
         <aside class="sidebar">
           <div class="side-card objective-card"><div class="card-label"><span class="tiny-cross">✳</span> CURRENT OBJECTIVE</div><h3 id="objective-title">Sweep the lobby</h3><p id="objective-copy">Clear threats and locate the stairwell to continue your search.</p><div class="objective-step"><span id="objective-step">01</span><span>OF 30 FLOORS</span></div></div>
           <div class="side-card survivor-card"><div class="card-label">SURVIVORS <span class="status-pill" id="survivor-status">SEARCHING</span></div><div class="survivor-count"><b id="rescued-count">00</b><span>/ <span id="total-survivors">06</span></span><span class="survivor-person">♙</span></div><p id="survivor-copy">No one left behind. Keep an eye out for signals.</p><div class="survivor-dots" id="survivor-dots"></div></div>
@@ -45,6 +45,7 @@
     <section id="end-screen" class="end-screen hidden"><div class="end-symbol">✳</div><p class="eyebrow">MERIDIAN TOWER · EXTRACTION</p><h2 id="end-title">THE ROOF IS YOURS.</h2><p id="end-copy">You brought everyone home.</p><button id="restart-button" class="primary-button">RUN IT AGAIN <span>↻</span></button></section>
     <footer class="site-footer"><span>LAST LIGHT <i>—</i> A SURVIVAL STORY</span><span>EVERY FLOOR HOLDS A CHOICE.</span><span>© MERIDIAN TOWER EMERGENCY PROTOCOL</span></footer>
   </main>
-  <script src="game.js"></script>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
+  <script type="module" src="game.js"></script>
 </body>
 </html>
