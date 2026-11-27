@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101513" />
+  <title>LAST LIGHT — The Meridian</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Last Light"><span class="brand-mark">✳</span><span>LAST<span class="brand-light">LIGHT</span></span></a>
+      <div class="top-center"><span class="live-dot"></span> EMERGENCY BROADCAST <span class="top-divider">/</span> MERIDIAN TOWER</div>
+      <div class="top-right"><span class="signal-icon">▮▮▯</span><span id="clock">DAY 01 · 06:42</span></div>
+    </header>
+
+    <section id="title-screen" class="title-screen">
+      <div class="title-art" aria-hidden="true"><div class="art-building"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="art-glow"></div><div class="art-grain"></div><div class="art-floor">30</div><div class="art-caption">MERIDIAN TOWER · 30 FLOORS · NO WAY OUT</div></div>
+      <div class="title-copy">
+        <p class="eyebrow">A SINGLE BUILDING. THIRTY FLOORS. ONE WAY HOME.</p>
+        <h1>THE<br/><em>MERIDIAN</em></h1>
+        <p class="story">The city went quiet three days ago. You came to in the lobby with a Glock, a handful of rounds, and a radio still calling for help. Somewhere above, survivors are holding on.</p>
+        <div class="mission-line"><span class="mission-icon">↑</span><span><b>YOUR EXTRACTION</b><small>Find everyone. Reach the roof. Make it count.</small></span></div>
+        <button id="start-button" class="primary-button">ENTER THE BUILDING <span>→</span></button>
+        <p class="control-note">WASD / ARROWS MOVE <span>·</span> MOUSE AIM & FIRE <span>·</span> E INTERACT <span>·</span> R RELOAD</p>
+      </div>
+      <div class="title-footer"><span>FIELD NOTES · 01</span><span>“KEEP MOVING. KEEP THEM ALIVE.”</span><span>CLASSIFIED // 07:13:09</span></div>
+    </section>
+
+    <section id="game-screen" class="game-screen hidden">
+      <div class="game-heading"><div><p class="eyebrow">MERIDIAN TOWER <span>/</span> ACTIVE SWEEP</p><h2 id="floor-title">LOBBY <span>— FLOOR 01</span></h2></div><div class="floor-progress"><div class="progress-label"><span>ROOF ACCESS</span><b id="floor-count">01 <i>/ 30</i></b></div><div class="progress-track"><i id="floor-progress-fill"></i></div></div></div>
+      <div class="game-layout">
+        <div class="scene-wrap"><canvas id="game" width="1000" height="620" aria-label="Top-down view of the current building floor"></canvas><div id="toast" class="toast"></div><div id="interact-hint" class="interact-hint hidden"><span>E</span> <b>INTERACT</b></div><div class="scene-bottom"><span><i class="live-dot"></i> LIVE FLOOR FEED</span><span id="floor-weather">POWER UNSTABLE · LIGHTS FLICKERING</span><span id="ammo-scene">9 / 36</span></div></div>
+        <aside class="sidebar">
+          <div class="side-card objective-card"><div class="card-label"><span class="tiny-cross">✳</span> CURRENT OBJECTIVE</div><h3 id="objective-title">Sweep the lobby</h3><p id="objective-copy">Clear threats and locate the stairwell to continue your search.</p><div class="objective-step"><span id="objective-step">01</span><span>OF 30 FLOORS</span></div></div>
+          <div class="side-card survivor-card"><div class="card-label">SURVIVORS <span class="status-pill" id="survivor-status">SEARCHING</span></div><div class="survivor-count"><b id="rescued-count">00</b><span>/ <span id="total-survivors">06</span></span><span class="survivor-person">♙</span></div><p id="survivor-copy">No one left behind. Keep an eye out for signals.</p><div class="survivor-dots" id="survivor-dots"></div></div>
+          <div class="side-card vitals-card"><div class="card-label">FIELD STATUS <span class="status-pill safe-pill">OPERATIONAL</span></div><div class="vital-row"><span>HEALTH</span><div class="meter"><i id="health-fill"></i></div><b id="health-value">100</b></div><div class="vital-row"><span>AMMO</span><div class="meter ammo-meter"><i id="ammo-fill"></i></div><b id="ammo-value">09 / 36</b></div><div class="weapon-row"><span class="weapon-icon">⌁</span><span>GLOCK 17<small>9MM · SEMI-AUTO</small></span><span id="reload-state" class="reload-state">READY</span></div></div>
+          <div class="side-card radio-card"><div class="card-label"><span class="radio-wave">)))</span> RADIO TRAFFIC</div><p id="radio-line">“If anyone can hear this... we’re on the upper floors. Please.”</p><small id="radio-source">UNKNOWN CALLER · WEAK SIGNAL</small></div>
+          <div class="side-bottom"><span>MERIDIAN EMERGENCY SERVICES</span><span>CH. 04 <i>●</i></span></div>
+        </aside>
+      </div>
+      <div class="mobile-controls"><button data-dir="up">▲</button><div><button data-dir="left">◀</button><button data-dir="down">▼</button><button data-dir="right">▶</button></div><button id="mobile-fire">FIRE</button><button id="mobile-interact">USE</button></div>
+    </section>
+    <section id="end-screen" class="end-screen hidden"><div class="end-symbol">✳</div><p class="eyebrow">MERIDIAN TOWER · EXTRACTION</p><h2 id="end-title">THE ROOF IS YOURS.</h2><p id="end-copy">You brought everyone home.</p><button id="restart-button" class="primary-button">RUN IT AGAIN <span>↻</span></button></section>
+    <footer class="site-footer"><span>LAST LIGHT <i>—</i> A SURVIVAL STORY</span><span>EVERY FLOOR HOLDS A CHOICE.</span><span>© MERIDIAN TOWER EMERGENCY PROTOCOL</span></footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
